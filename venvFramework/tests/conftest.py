@@ -6,6 +6,9 @@ from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.common.by import By
 
 @pytest.fixture(scope='class')
-def setBrowser():
+def setBrowser(request):
     driver = webdriver.Chrome()
     driver.get('https://rahulshettyacademy.com/angularpractice/')
+    request.cls.driver = driver
+    yield
+    driver.close()
