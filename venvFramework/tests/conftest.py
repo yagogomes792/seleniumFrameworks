@@ -9,6 +9,7 @@ from selenium.webdriver.common.by import By
 def setBrowser(request):
     driver = webdriver.Chrome()
     driver.get('https://rahulshettyacademy.com/angularpractice/')
+    #utilizado instância 'request' para habilitar a variavel de classe 'driver'
     request.cls.driver = driver
     yield
     driver.close()

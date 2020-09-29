@@ -5,13 +5,15 @@ from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.common.by import By
 from utilities.BaseClass import BaseClass
+from pageObjects.HomePage import HomePage
 
 
 class TestOne(BaseClass):
 
     def test_e2e(self):
         #clica na opção shop no menu
-        self.driver.find_element_by_link_text('Shop').click()
+        homePage = HomePage(self.driver)
+        homePage.shopItems().click()
         #guarda em uma variável todos os produtos
         products = self.driver.find_elements_by_xpath("//div[@class='card h-100']")
         #Iteração para passar por todos os produtos selecionados e guardados na variável
