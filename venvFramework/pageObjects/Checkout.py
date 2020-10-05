@@ -1,4 +1,5 @@
 from selenium.webdriver.common.by import By
+from pageObjects.ConfirmPage import ClickCheckout
 
 class CheckoutPage:
 
@@ -21,7 +22,9 @@ class CheckoutPage:
 
     #clica na opção de checkout
     def checkouItem(self):
-        return self.driver.find_element(*CheckoutPage.checkouButton)
+        self.driver.find_element(*CheckoutPage.checkouButton).click()
+        clickCheckout = ClickCheckout(self.driver)
+        return clickCheckout
     
     #clica para finalizar compra
     def confirmCheckout(self):

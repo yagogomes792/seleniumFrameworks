@@ -8,6 +8,7 @@ from utilities.BaseClass import BaseClass
 from pageObjects.HomePage import HomePage
 from pageObjects.Checkout import CheckoutPage
 from pageObjects.Confirm import ConfirmPage
+from pageObjects.ConfirmPage import ClickCheckout
 
 
 class TestOne(BaseClass):
@@ -15,9 +16,8 @@ class TestOne(BaseClass):
     def test_e2e(self):
         #clica na opção shop no menu
         homePage = HomePage(self.driver)
-        homePage.shopItems().click()
+        checkoutPage = homePage.shopItems()
         #guarda em uma variável todos os produtos
-        checkoutPage = CheckoutPage(self.driver)
         products = checkoutPage.findProducts()
         #Iteração para passar por todos os produtos selecionados e guardados na variável
         #//div[@class='card h-100']/div/h4/a
@@ -27,16 +27,15 @@ class TestOne(BaseClass):
             if product_name == "Blackberry":
                 checkoutPage.chooseProduct().click()
         #clica na opção de checkout
-        checkoutPage.checkouItem().click()
+        clickCheckout = checkoutPage.checkouItem()
         #clica para finalizar compra
         checkoutPage.confirmCheckout().click()
         #escreve 'Ind' na caixa de texto
         confirmPage = ConfirmPage(self.driver)
         confirmPage.enterPromoCode().send_keys('Ind')
         #espera explicita para aparecer as opções
-        wait = WebDriverWait(self.driver, 7)
         #localizar a opção desejada
-        wait.until(expected_conditions.presence_of_element_located((By.XPATH, "/html/body/app-root/app-shop/div/app-checkout/div/div[2]/ul/li/a")))
+        self.verifyLinkPresence('India')
         #clicar na opção do código promocional desejado
         confirmPage.choosePromoCode().click()
         #clica no checkbox para aceitar os termos e condições
