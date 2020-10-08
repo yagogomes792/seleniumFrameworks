@@ -27,7 +27,7 @@ class TestOne(BaseClass):
             if product_name == "Blackberry":
                 checkoutPage.chooseProduct().click()
         #clica na opção de checkout
-        clickCheckout = checkoutPage.checkouItem()
+        checkoutPage.checkouItem()
         #clica para finalizar compra
         checkoutPage.confirmCheckout().click()
         #escreve 'Ind' na caixa de texto
