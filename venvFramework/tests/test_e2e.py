@@ -49,4 +49,4 @@ class TestOne(BaseClass):
         #printa no terminal o texto
         print(successTitle)
         #faz o print da tela final com a mensagem de sucesso
-        self.driver.get_screenshot_as_file('screen.png')
+        self.driver.get_screenshot_as_file('/reports/screen.png')
